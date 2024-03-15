@@ -10,6 +10,6 @@ temp=$(sed -r 's/\x1b\[[0-9]{0,2}\;?[0-9]{0,2}\;?[0-9]{0,3}m/ /g' raw_data_$toda
 
 echo $temp
 
-sed -r 's/\( [0-9][0-9] \)//g' <<< $temp | grep -o '[0-9][0-9]\s\s°C' | cut -d " " -f 1 > test.txt
+temp1=$(sed -r 's/\( [0-9][0-9] \)//g' <<< $temp | grep -o '[0-9][0-9]\s\s°C' | cut -d " " -f 1)
 
-echo -e $(date '+%Y\t%m\t%d\t')$(sed -n '1,1p' test.txt)'\t'$(sed -n '3,3p' test.txt) >> ./rx_poc.log
+echo -e $(date '+%Y\t%m\t%d\t')$(sed -n '1,1p' <<< $temp1)'\t'$(sed -n '3,3p' <<< $temp1) >> ./rx_poc.log

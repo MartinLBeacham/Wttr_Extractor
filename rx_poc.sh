@@ -1,6 +1,8 @@
 today=$(date '+%Y%m%d')
 
-curl wttr.in/casablanca?m > ./raw_data_$today
+echo "please enter a city name"
+read city
+curl wttr.in/$city?m > ./raw_data_$today
 
 raw_data=./raw_data_$today
 
